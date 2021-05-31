@@ -9,41 +9,43 @@
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>API REST IN THE WORLD</title>
-    <link class="theme dark" rel="stylesheet" href="css/dark-styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link class="theme dark" rel="stylesheet" >
 </head>
 
 <body>
-
-    <div id="vueContainer">
-
-
-        <header>
-            <div>
+    
+    <div id="vueContainer" :class="theme">
+        
+        
+        <header :class="theme">
+            <div :class="theme" >
                 <span>Where in the world ?</span>
-                <div><em class="far fa-moon"></em><span class="themeButton">Dark Mode</span></div>
+                <div ><em class="far fa-moon"></em><span class="themeButton" @click="switchTheme">Dark Mode</span></div>
             </div>
         </header>
 
-        <div class="filters">
-            <div class="search">
+        <div class="filters ">
+            <div id="search" :class="theme">
                 <em class="fas fa-search"></em>
-                <input type="text" class="input" data-type="name" v-on:change="name"
+                <input type="text" :class="theme" data-type="name" v-on:keyup="name"
                     placeholder="Search for a country...">
             </div>
             <div class="regions">
-                <select name="regions" id="region-select">
+                <select name="regions" id="region-select" data-type="region" v-on:change="region" :class="theme">
                     <option disabled value="all">Filter By regions</option>
-                    <option value="africa">Africa</option>
-                    <option value="americas">America</option>
-                    <option value="asia">Asia</option>
-                    <option value="europe">Europe</option>
-                    <option value="oceania">Oceania</option>
+                    <option value="all">All</option>
+                    <option value="region/africa">Africa</option>
+                    <option value="region/americas">America</option>
+                    <option value="region/asia">Asia</option>
+                    <option value="region/europe">Europe</option>
+                    <option value="region/oceania">Oceania</option>
                 </select>
             </div>
         </div>
 
         <div class="countries" id="countries">
-            <div id="country" class="country" v-for="country in countries" :key="countries">
+            <div id="country" class="country theme" v-for="country in countries" :key="country.name">
                 <div class="flag" v-bind:style="{ backgroundImage: 'url(' + country.flag + ')' }">
                 </div>
 
@@ -58,7 +60,7 @@
 
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script  src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 <script src="js/scripts.js"></script>
 

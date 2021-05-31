@@ -1,39 +1,43 @@
-
-const example1 = new Vue({
+// Creation of the Vue to show the countries
+const vueCountries = new Vue({
     el: '#vueContainer',
     data: {
         countries: countries,
+        theme: "dark"
     },
     methods: {
+        //function to show the countries by name
         name: function (event) {
-            fetch("https://restcountries.eu/rest/v2/name/" + event.target.value)
-                .then(response => response.json())
-                .then(
-                    function (countries) {
-                        console.log(countries)
-                        this.countries = countries
-                    })
+            showCountries("https://restcountries.eu/rest/v2/name/", event.target.value)
         },
+        //function to show the countries by region
         region: function (event) {
-            fetch("https://restcountries.eu/rest/v2/region/" + event.target.value)
-                .then(response => response.json())
-                .then(
-                    function (countries) {
-                        this.countries = countries
-                    })
+            showCountries("https://restcountries.eu/rest/v2/", event.target.value)
         },
+        //function to show all the countries
         all: function (event) {
-            fetch("https://restcountries.eu/rest/v2/all")
-                .then(response => response.json())
-                .then(
-                    function (countries) {
-                        console.log(countries)
-                        
-                        this.countries = countries
-                    })
+            showCountries("https://restcountries.eu/rest/v2/all", "")
+        },
+        //function to switch between themes
+        switchTheme: function(event) {
+            if (this.theme == "dark") {
+                    this.theme = "light"
+            } else {
+                    this.theme = "dark"
+            }
         }
     }
 })
 
+// Function to show the countries depends on the filter choosen
+function showCountries(url, eventValue) {
+    fetch(url + eventValue)
+        .then(response => response.json())
+        .then(
+            function (countries) {
+                vueCountries.countries = countries
+            })
+}
 
-example1.all()
+// Load all countries when the page load the first time
+vueCountries.all()
