@@ -10,22 +10,18 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>API REST IN THE WORLD</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link class="theme dark" rel="stylesheet" >
 </head>
 
 <body>
-    
     <div id="vueContainer" :class="theme">
-        
-        
         <header :class="theme">
-            <div :class="theme" >
+            <div :class="theme">
                 <span>Where in the world ?</span>
-                <div ><em class="far fa-moon"></em><span class="themeButton" @click="switchTheme">Dark Mode</span></div>
+                <div><em class="far fa-moon"></em><span class="themeButton" @click="switchTheme">Dark Mode</span></div>
             </div>
         </header>
 
-        <div class="filters ">
+        <div class="filters" v-show="isShow">
             <div id="search" :class="theme">
                 <em class="fas fa-search"></em>
                 <input type="text" :class="theme" data-type="name" v-on:keyup="name"
@@ -45,14 +41,63 @@
         </div>
 
         <div class="countries" id="countries">
-            <div id="country" class="country theme" v-for="country in countries" :key="country.name">
+            <div id="country" @click="getDetailsOfCountry(country.name)" class="country theme"
+                v-for="country in countries" :key="country.name">
                 <div class="flag" v-bind:style="{ backgroundImage: 'url(' + country.flag + ')' }">
                 </div>
-
                 <p class="name">{{ country.name }}</p>
                 <p class="infos">Population : <span>{{ country.population }}</span></p>
                 <p class="infos">Region : <span>{{ country.region }}</span></p>
                 <p class="infos">Capital : <span>{{ country.capital }}</span></p>
+            </div>
+
+
+            <!-- Country Alone -->
+            <div id="countryDetails" class="countryDetails theme" v-for="countryDetails in country"
+                :key="country.population">
+                <div id="back" :class="theme" @click="all">
+                    <span><em class="fas fa-long-arrow-alt-left"></em> Back</span>
+                </div>
+
+                <div class="details">
+
+                    <div class="flagDetails">
+                        <img :src="countryDetails.flag" alt="">
+                    </div>
+                    <div class="flexColumn">
+                        <p class="name">{{ countryDetails.name }}</p>
+
+                        <div class="flexRow">
+                            <div>
+                                <p class="infos">Native Name : <span>{{ countryDetails.nativeName }}</span></p>
+                                <p class="infos">Population : <span>{{ countryDetails.population }}</span></p>
+                                <p class="infos">Region : <span>{{ countryDetails.region }}</span></p>
+                                <p class="infos">Sub Region : <span>{{ countryDetails.subregion }}</span></p>
+                                <p class="infos">Capital : <span>{{ countryDetails.capital }}</span></p>
+                            </div>
+                            <div>
+                                <div v-for="topLevelDomain in countryDetails.topLevelDomain">
+                                    <p class="infos">TLD : <span>{{ topLevelDomain }}</span></p>
+                                </div>
+                                <div v-for="currency in countryDetails.currencies">
+                                    <p class="infos">currency : <span>{{ currency.name }}</span></p>
+                                </div>
+                                <div>
+                                    <p class="infos">Language(s) : <span
+                                            v-for="language in countryDetails.languages">{{ language.name }}  </span>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div>
+                            <p v-if="countryDetails.borders.length" class="infos borders"> Border Countries : <span
+                                    v-for="borderCountry in countryDetails.borders">{{ borderCountry }} </span></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -60,7 +105,7 @@
 
 </body>
 
-<script  src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 <script src="js/scripts.js"></script>
 
