@@ -14,10 +14,11 @@
 
 <body>
     <div id="vueContainer" :class="theme">
+
         <header :class="theme">
             <div :class="theme">
                 <span>Where in the world ?</span>
-                <div><em class="far fa-moon"></em><span class="themeButton" @click="switchTheme">Dark Mode</span></div>
+                <div class="themeSwitcher"><em class="far fa-moon"></em><span class="themeButton" @click="switchTheme">Dark Mode</span></div>
             </div>
         </header>
 
@@ -25,7 +26,7 @@
             <div id="search" :class="theme">
                 <em class="fas fa-search"></em>
                 <input type="text" :class="theme" data-type="name" v-on:keyup="name"
-                    placeholder="Search for a country...">
+                    placeholder="Search for a country..." >
             </div>
             <div class="regions">
                 <select name="regions" id="region-select" data-type="region" v-on:change="region" :class="theme">
@@ -40,9 +41,11 @@
             </div>
         </div>
 
-        <div class="countries" id="countries">
-            <div id="country" @click="getDetailsOfCountry(country.name)" class="country theme"
-                v-for="country in countries" :key="country.name">
+        <transition-group tag="div" name="fade" class="countries" id="countries">
+
+            <!-- Country list -->
+            <div id="country" @click="getDetailsOfCountry(country.name)" class="country"
+                v-for="(country,index) in countries" :key="index">
                 <div class="flag" v-bind:style="{ backgroundImage: 'url(' + country.flag + ')' }">
                 </div>
                 <p class="name">{{ country.name }}</p>
@@ -53,8 +56,8 @@
 
 
             <!-- Country Alone -->
-            <div id="countryDetails" class="countryDetails theme" v-for="countryDetails in country"
-                :key="country.population">
+            <div id="countryDetails" class="countryDetails theme" v-for="(countryDetails,index) in country"
+                :key="index">
                 <div id="back" :class="theme" @click="all">
                     <span><em class="fas fa-long-arrow-alt-left"></em> Back</span>
                 </div>
@@ -99,8 +102,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+            
+        </transition-group>
     </div>
 
 </body>

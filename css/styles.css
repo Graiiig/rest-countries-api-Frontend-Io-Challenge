@@ -30,7 +30,7 @@ header{
 }
 
 header>div>span:nth-child(1){
-    font-size: 2vw;
+    font-size: 18px;
 }
 
 .countries {
@@ -76,7 +76,7 @@ header>div>span:nth-child(1){
 
 .name {
     
-    font-size: 1.5vw;
+    font-size: 20px;
     font-weight: 600;
 }
 
@@ -145,7 +145,7 @@ select{
     margin-right: 1vw;
 }
 
-.country:hover, #search:hover, .themeSwitch:hover, .regions:hover, select:hover, #back:hover{
+.country:hover, #search:hover, .themeSwitch:hover, .regions:hover, select:hover, #back:hover, .themeSwitcher:hover{
     cursor: pointer;
 }
 
@@ -217,3 +217,50 @@ input.light, #back.light{
     padding: 0.6vw;
     margin-right: 0.5vw;
 }
+
+@media only screen and (max-width: 600px)  {
+    .countries, .filters, .details{
+        flex-direction: column!important;
+        align-items: center;
+    }
+
+
+    .country{
+        width: 85vw;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+
+    .regions{
+        margin-top: 3vw;
+        align-self: flex-start;
+    }
+
+    input{
+        width: unset!important;
+    }
+
+    #search{
+        width: 80vw;
+    }
+
+    .flagDetails{
+        width: unset;
+    }
+
+    .details{
+        margin-top: 30px;
+    }
+
+    .infos{
+        margin-bottom: 10px;
+    }
+
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }

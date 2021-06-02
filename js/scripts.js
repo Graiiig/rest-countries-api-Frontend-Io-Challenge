@@ -3,7 +3,7 @@ const vueCountries = new Vue({
     el: '#vueContainer',
     data: {
         countries: countries,
-        country:country,
+        country : country,
         theme: "dark",
         isShow :true
     },
@@ -30,7 +30,6 @@ const vueCountries = new Vue({
         },
         //function to get details
         getDetailsOfCountry: function (name) {
-            console.log(name)
             fetch("https://restcountries.eu/rest/v2/name/"+name)
             .then(response => response.json())
             .then(
