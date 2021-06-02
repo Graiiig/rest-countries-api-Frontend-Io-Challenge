@@ -98,6 +98,7 @@
                         <div>
                             <p v-if="countryDetails.borders.length" class="infos borders"> Border Countries : <span
                                     v-for="borderCountry in countryDetails.borders">{{ borderCountry }} </span></p>
+                            <p v-else > No border countries</p>
                         </div>
                     </div>
                 </div>
