@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Community Solutions](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca/hub/rest-countries-api-with-color-theme-switcher-solution-XamFF4N_c/solutions)
+- Live Site URL: [My Solution](https://graiiig.github.io/rest-countries-api-Frontend-Io-Challenge/)
 
 ## My process
 
